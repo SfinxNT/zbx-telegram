@@ -10,7 +10,7 @@ Construct like #sev[0-5]# replaced with hardcoded emoji. Use with #sev{TRIGGER.N
 5. High (4) - 😨 (0x1F628)
 6. Disaster (5) - 😱 (0x1F631)
 
-Construct like #sta(ok)|(problem)# replaced with hardcoded emoji. Use with #sta{TRIGGER.STATUS#}
+Construct like #sta(ok)|(problem)# replaced with hardcoded emoji. Use with #sta{TRIGGER.STATUS}#
 1. OK - ✅ (0x2705)
 2. Problem - ⚠️ (0xx26A0)
 
