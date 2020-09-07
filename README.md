@@ -1,4 +1,18 @@
-https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/telegram
+Based on [Zabbix official media](https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/telegram)
+
+Added support for hardcoded emoji in Subject.
+
+Construct like #sev[0-5]# replaced with hardcoded emoji. Use with #sev{TRIGGER.NSEVERITY}#
+1. Not classified (0) - 😶 (0x1F636)
+2. Information (1) - 🤔 (0x1F914)
+3. Warning (2) - 😫 (0x1F62B)
+4. Average (3) - 😭 (0x1F62D)
+5. High (4) - 😨 (0x1F628)
+6. Disaster (5) - 😱 (0x1F631)
+
+Construct like #sta(ok)|(problem)# replaced with hardcoded emoji. Use with #sta{TRIGGER.STATUS#}
+1. OK - ✅ (0x2705)
+2. Problem - ⚠️ (0xx26A0)
 
 # Telegram webhook 
 
