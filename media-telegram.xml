@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-09-07T17:46:19Z</date>
+    <date>2020-09-17T11:58:03Z</date>
     <media_types>
         <media_type>
             <name>Telegram</name>
@@ -25,7 +25,7 @@
                 </parameter>
                 <parameter>
                     <name>Token</name>
-                    <value>1194179642:AAEg29m-gwwEKttWuzdzKRa56ZGqfFsIL9U</value>
+                    <value></value>
                 </parameter>
             </parameters>
             <script>var Telegram = {&#13;
@@ -82,6 +82,26 @@
     }&#13;
 }&#13;
 &#13;
+function escapeHtml(unsafe) {&#13;
+    return unsafe&#13;
+         .replace(/&amp;/g, &quot;&amp;amp;&quot;)&#13;
+         .replace(/&lt;/g, &quot;&amp;lt;&quot;)&#13;
+         .replace(/&gt;/g, &quot;&amp;gt;&quot;)&#13;
+         .replace(/&quot;/g, &quot;&amp;quot;&quot;)&#13;
+		 .replace(/&amp;lt;b&amp;gt;/g,&quot;&lt;b&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/b&amp;gt;/g,&quot;&lt;/b&gt;&quot;)&#13;
+		 .replace(/&amp;lt;u&amp;gt;/g,&quot;&lt;u&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/u&amp;gt;/g,&quot;&lt;/u&gt;&quot;)&#13;
+		 .replace(/&amp;lt;pre&amp;gt;/g,&quot;&lt;pre&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/pre&amp;gt;/g,&quot;&lt;/pre&gt;&quot;)&#13;
+		 .replace(/&amp;lt;i&amp;gt;/g,&quot;&lt;i&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/i&amp;gt;/g,&quot;&lt;/i&gt;&quot;)&#13;
+		 .replace(/&amp;lt;s&amp;gt;/g,&quot;&lt;s&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/s&amp;gt;/g,&quot;&lt;/s&gt;&quot;)&#13;
+		 .replace(/&amp;lt;code&amp;gt;/g,&quot;&lt;code&gt;&quot;)&#13;
+		 .replace(/&amp;lt;\/code&amp;gt;/g,&quot;&lt;/code&gt;&quot;);&#13;
+ }&#13;
+&#13;
 try {&#13;
     var params = JSON.parse(value);&#13;
 &#13;
@@ -120,7 +140,11 @@ try {&#13;
     }else if (/#STAOK#/i.test(temp_res)){&#13;
         temp_res = temp_res.replace(/#STAOK#/i, String.fromCodePoint(0x2705));&#13;
     }&#13;
-    Telegram.message = temp_res + '\n' + params.Message;&#13;
+	if(Telegram.parse_mode == 'HTML'){&#13;
+		Telegram.message = escapeHtml(temp_res + '\n' + params.Message);&#13;
+	}else {&#13;
+		Telegram.message = temp_res + '\n' + params.Message;&#13;
+	}&#13;
     Telegram.sendMessage();&#13;
 &#13;
     return 'OK';&#13;
